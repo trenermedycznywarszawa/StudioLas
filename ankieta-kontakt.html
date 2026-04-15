@@ -262,7 +262,10 @@ footer{background:var(--forest);padding:60px 0 36px}
         <div class="form-promise"><strong>Po wypełnieniu:</strong> oddzwaniam w ciągu 24 godzin w dni robocze. Krótka rozmowa – bez presji, bez sprzedaży.</div>
       </div>
 
-      <form id="mainForm" novalidate class="reveal" style="transition-delay:.1s">
+      <!-- NETLIFY FORM: ankieta-diagnostyczna -->
+      <form id="mainForm" name="ankieta-diagnostyczna" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate class="reveal" style="transition-delay:.1s">
+        <input type="hidden" name="form-name" value="ankieta-diagnostyczna" />
+        <p style="display:none"><label>Nie wypełniaj: <input name="bot-field" /></label></p>
 
         <div class="form-row">
           <div class="form-group">
@@ -476,14 +479,17 @@ footer{background:var(--forest);padding:60px 0 36px}
         <p class="simple-note">Pamiętaj jednak, że im więcej wiem o Twojej sytuacji przed rozmową, tym bardziej konkretna i pomocna będzie ta rozmowa. Dlatego dla osób z poważniejszymi problemami zdrowotnymi zawsze proszę o wypełnienie pełniejszej ankiety powyżej.</p>
       </div>
       <div class="reveal" style="transition-delay:.15s">
-        <form id="simpleForm" novalidate>
+        <!-- NETLIFY FORM: prosty-kontakt -->
+        <form id="simpleForm" name="prosty-kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="prosty-kontakt" />
+          <p style="display:none"><label>Nie wypełniaj: <input name="bot-field" /></label></p>
           <div class="sf-group">
             <label class="sf-label" for="sf-imie">Imię i telefon lub e-mail *</label>
-            <input class="sf-input" type="text" id="sf-imie" placeholder="Jan, tel. 600 123 456" required />
+            <input class="sf-input" type="text" id="sf-imie" name="imie_kontakt" placeholder="Jan, tel. 600 123 456" required />
           </div>
           <div class="sf-group">
             <label class="sf-label" for="sf-msg">Twoja wiadomość *</label>
-            <textarea class="sf-textarea" id="sf-msg" placeholder="Napisz, o co chodzi – bez formalności..." required></textarea>
+            <textarea class="sf-textarea" id="sf-msg" name="wiadomosc" placeholder="Napisz, o co chodzi – bez formalności..." required></textarea>
           </div>
           <button type="submit" class="sf-submit">Wyślij wiadomość →</button>
         </form>
@@ -554,7 +560,7 @@ document.querySelectorAll('.pain-btn').forEach(btn=>{
   });
 });
 
-// Main form validation
+// Main form – walidacja + wysyłka do Netlify
 document.getElementById('mainForm').addEventListener('submit',function(e){
   e.preventDefault();
   let ok=true;
@@ -575,13 +581,10 @@ document.getElementById('mainForm').addEventListener('submit',function(e){
 
   if(!ok){const first=this.querySelector('.err,.form-err-msg.show');if(first)first.scrollIntoView({behavior:'smooth',block:'center'});return;}
 
-  // ── INTEGRACJA Z FORMSPREE (podmień ID): ──
-  // const fd=new FormData(this);
-  // fetch('https://formspree.io/f/TWOJ_FORMSPREE_ID',{method:'POST',body:fd,headers:{'Accept':'application/json'}})
-  //   .then(r=>r.ok?showOk():alert('Błąd wysyłki – napisz bezpośrednio na e-mail.'))
-  //   .catch(()=>alert('Błąd sieci.'));
-
-  showOk();
+  const fd=new FormData(this);
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
+    .then(r=>r.ok?showOk():alert('Błąd wysyłki – napisz bezpośrednio na e-mail.'))
+    .catch(()=>alert('Błąd sieci – napisz bezpośrednio na e-mail.'));
 });
 
 function showOk(){
@@ -591,13 +594,21 @@ function showOk(){
   s.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-// Simple form
+// Simple form – walidacja + wysyłka do Netlify
 document.getElementById('simpleForm').addEventListener('submit',function(e){
   e.preventDefault();
   if(!document.getElementById('sf-imie').value.trim()||!document.getElementById('sf-msg').value.trim())return;
-  // fetch('https://formspree.io/f/TWOJ_ID_PROSTEGO_FORMULARZA', {...})
-  this.style.display='none';
-  document.getElementById('sfSuccess').classList.add('show');
+  const fd=new FormData(this);
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
+    .then(r=>{
+      if(r.ok){
+        this.style.display='none';
+        document.getElementById('sfSuccess').classList.add('show');
+      } else {
+        alert('Błąd wysyłki – napisz bezpośrednio na e-mail.');
+      }
+    })
+    .catch(()=>alert('Błąd sieci – napisz bezpośrednio na e-mail.'));
 });
 </script>
 </body>
