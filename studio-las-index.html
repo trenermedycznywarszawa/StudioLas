@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Las | Trening Medyczny w Lesie pod Warszawą</title>
+  <meta name="description" content="Kameralne studio treningu medycznego w lesie pod Warszawą (Prace Duże, gmina Tarczyn). Około 12 tygodni indywidualnej pracy 1:1 – wyjście z bólu, powrót po kontuzji, odbudowa zaufania do ciała." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Studio Las | Trening Medyczny w Lesie pod Warszawą" />
+  <meta property="og:description" content="Kameralne studio treningu medycznego. Praca 1:1, System 4 Kroków, 12 tygodni. Okolice Piaseczna i Tarczyna." />
+  <meta property="og:image" content="./images/studio-exterior.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── DESIGN TOKENS ─────────────────────────────── */
+    :root {
+      --forest:      #1C2B24;
+      --anthracite:  #2D2D2D;
+      --cedar:       #B8935A;
+      --cedar-light: #D4AC78;
+      --offwhite:    #F7F4EF;
+      --white:       #FFFFFF;
+      --grey-soft:   #E8E4DC;
+      --grey-text:   #6B6560;
+
+      --font-display: 'Cormorant Garant', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+
+      --max-w: 1120px;
+      --radius: 4px;
+      --transition: 0.3s ease;
+    }
+
+    /* ─── RESET & BASE ───────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      color: var(--anthracite);
+      background: var(--offwhite);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── SCROLL REVEAL ─────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: var(--forest);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--white);
+    }
+    .nav-logo span {
+      color: var(--cedar);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--cedar-light); }
+
+    .nav-cta {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white) !important;
+      border: 1px solid var(--cedar);
+      padding: 9px 20px;
+      transition: background var(--transition), color var(--transition) !important;
+    }
+    .nav-cta:hover {
+      background: var(--cedar) !important;
+      color: var(--white) !important;
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: var(--transition);
+    }
+
+    /* Mobile nav */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--forest);
+      padding: 24px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-mobile .btn-primary {
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    /* ─── BUTTONS ────────────────────────────────────── */
+    .btn-primary {
+      display: inline-block;
+      background: var(--cedar);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .btn-primary:hover {
+      background: var(--cedar-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      transition: border-color var(--transition), color var(--transition);
+    }
+    .btn-ghost:hover {
+      border-color: var(--cedar);
+      color: var(--cedar-light);
+    }
+
+    /* ─── HERO ───────────────────────────────────────── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('./images/studio-exterior.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      transform: scale(1.04);
+      transition: transform 8s ease;
+    }
+    #hero.loaded .hero-bg {
+      transform: scale(1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(28, 43, 36, 0.78) 0%,
+        rgba(28, 43, 36, 0.55) 60%,
+        rgba(28, 43, 36, 0.38) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      padding-left: 0;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cedar-light);
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.9s 0.35s forwards;
+    }
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--cedar-light);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.82);
+      max-width: 480px;
+      margin-bottom: 48px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.9s 0.55s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.9s 0.75s forwards;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 1s 1.2s forwards;
+    }
+    .hero-scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--cedar), transparent);
+      animation: scrollPulse 2s 1.4s infinite;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* ─── SECTION SHARED ─────────────────────────────── */
+    .section {
+      padding: 100px 0;
+    }
+    .section-dark {
+      background: var(--forest);
+      color: var(--white);
+    }
+    .section-warm {
+      background: var(--offwhite);
+    }
+    .section-white {
+      background: var(--white);
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cedar);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .section-dark .section-label {
+      color: var(--cedar-light);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .section-dark .section-title { color: var(--white); }
+
+    .section-lead {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--grey-text);
+      max-width: 560px;
+      line-height: 1.8;
+    }
+    .section-dark .section-lead {
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ─── SECTION: DLA KOGO ──────────────────────────── */
+    #dla-kogo .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    .filter-col {
+      padding: 48px 40px;
+    }
+    .filter-col.yes {
+      background: var(--forest);
+      color: var(--white);
+    }
+    .filter-col.no {
+      background: var(--grey-soft);
+      color: var(--anthracite);
+    }
+
+    .filter-col-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .filter-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .filter-col.yes .filter-icon {
+      background: var(--cedar);
+      color: var(--white);
+    }
+    .filter-col.no .filter-icon {
+      background: rgba(0,0,0,0.12);
+      color: var(--grey-text);
+    }
+
+    .filter-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .filter-list li {
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 1.55;
+      padding-left: 16px;
+      position: relative;
+    }
+    .filter-col.yes .filter-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 5px;
+      height: 1px;
+      background: var(--cedar);
+    }
+    .filter-col.no .filter-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 5px;
+      height: 1px;
+      background: var(--grey-text);
+      opacity: 0.5;
+    }
+    .filter-col.yes .filter-list li { color: rgba(255,255,255,0.85); }
+    .filter-col.no .filter-list li { color: var(--grey-text); }
+
+    /* ─── SECTION: JAK TO DZIAŁA ─────────────────────── */
+    #jak-to-dziala {
+      background: var(--white);
+    }
+
+    .steps-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 72px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 16px);
+      right: calc(12.5% + 16px);
+      height: 1px;
+      background: var(--grey-soft);
+      z-index: 0;
+    }
+
+    .step {
+      padding: 0 24px 0 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-number-wrap {
+      display: flex;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .step-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--offwhite);
+      border: 1px solid var(--grey-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--cedar);
+      flex-shrink: 0;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .step:hover .step-number {
+      background: var(--cedar);
+      border-color: var(--cedar);
+      color: var(--white);
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--anthracite);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .step-body {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .step-effect {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--cedar);
+      padding-top: 12px;
+      border-top: 1px solid var(--grey-soft);
+    }
+
+    .steps-cta {
+      text-align: center;
+      margin-top: 72px;
+    }
+
+    /* ─── SECTION: O DAMIANIE ────────────────────────── */
+    #o-damianie {
+      background: var(--offwhite);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+    .about-image-wrap::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: 20px;
+      bottom: 20px;
+      border: 1px solid var(--cedar);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .about-image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+    .about-image-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--grey-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--grey-text);
+      letter-spacing: 0.05em;
+    }
+
+    .about-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--anthracite);
+      margin-bottom: 28px;
+    }
+    .about-tagline em {
+      font-style: italic;
+      color: var(--cedar);
+    }
+
+    .about-body {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.85;
+      margin-bottom: 36px;
+    }
+
+    .about-credentials {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+    .about-credentials li {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--anthracite);
+      padding-left: 20px;
+      position: relative;
+    }
+    .about-credentials li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 1px;
+      background: var(--cedar);
+    }
+
+    .about-certs-link {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cedar);
+      border-bottom: 1px solid var(--cedar);
+      padding-bottom: 2px;
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .about-certs-link:hover {
+      color: var(--anthracite);
+      border-color: var(--anthracite);
+    }
+
+    /* ─── SECTION: OPINIE ────────────────────────────── */
+    #opinie {
+      background: var(--forest);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 56px;
+    }
+
+    .testimonial {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 40px 32px;
+      transition: background var(--transition);
+    }
+    .testimonial:hover {
+      background: rgba(255,255,255,0.07);
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 32px;
+    }
+    .testimonial-quote::before {
+      content: '\201C';
+      font-size: 3rem;
+      line-height: 0;
+      vertical-align: -0.6rem;
+      color: var(--cedar);
+      margin-right: 4px;
+      font-style: normal;
+    }
+
+    .testimonial-meta {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+    }
+    .testimonial-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .testimonial-context {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    /* ─── SECTION: PAKIETY ───────────────────────────── */
+    #pakiety {
+      background: var(--offwhite);
+    }
+
+    .packages-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .packages-header .section-lead {
+      margin: 0 auto;
+    }
+
+    .packages-rule {
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--grey-text);
+      margin-bottom: 48px;
+      font-style: italic;
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .package {
+      background: var(--white);
+      padding: 48px 36px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform var(--transition);
+    }
+    .package:hover {
+      transform: translateY(-4px);
+    }
+    .package.featured {
+      background: var(--forest);
+      color: var(--white);
+    }
+    .package.featured::before {
+      content: 'Zacznij tu';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--cedar);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+    }
+
+    .package-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cedar);
+      margin-bottom: 12px;
+    }
+    .package.featured .package-label { color: var(--cedar-light); }
+
+    .package-name {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: var(--anthracite);
+    }
+    .package.featured .package-name { color: var(--white); }
+
+    .package-price {
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--anthracite);
+      margin-bottom: 4px;
+    }
+    .package.featured .package-price { color: var(--white); }
+
+    .package-price-note {
+      font-size: 0.78rem;
+      color: var(--grey-text);
+      margin-bottom: 28px;
+    }
+    .package.featured .package-price-note { color: rgba(255,255,255,0.55); }
+
+    .package-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--grey-soft);
+      margin-bottom: 28px;
+    }
+    .package.featured .package-divider { background: rgba(255,255,255,0.2); }
+
+    .package-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 36px;
+      flex: 1;
+    }
+    .package-features li {
+      font-size: 0.85rem;
+      font-weight: 300;
+      padding-left: 16px;
+      position: relative;
+      color: var(--grey-text);
+      line-height: 1.55;
+    }
+    .package.featured .package-features li { color: rgba(255,255,255,0.75); }
+    .package-features li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 10px;
+      width: 6px; height: 1px;
+      background: var(--cedar);
+    }
+    .package.featured .package-features li::before { background: var(--cedar-light); }
+
+    .package-cta {
+      display: block;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+      border: 1px solid var(--cedar);
+      color: var(--cedar);
+      transition: all var(--transition);
+    }
+    .package-cta:hover {
+      background: var(--cedar);
+      color: var(--white);
+    }
+    .package.featured .package-cta {
+      background: var(--cedar);
+      border-color: var(--cedar);
+      color: var(--white);
+    }
+    .package.featured .package-cta:hover {
+      background: var(--cedar-light);
+      border-color: var(--cedar-light);
+    }
+
+    .packages-note {
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--grey-text);
+      margin-top: 28px;
+      font-style: italic;
+    }
+
+    /* ─── FINAL CTA BANNER ───────────────────────────── */
+    #final-cta {
+      background: var(--anthracite);
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .final-cta-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cedar-light);
+      margin-bottom: 20px;
+    }
+
+    .final-cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .final-cta-title em {
+      font-style: italic;
+      color: var(--cedar-light);
+    }
+
+    .final-cta-sub {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.75;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: var(--forest);
+      padding: 60px 0 36px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--white);
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    .footer-logo span { color: var(--cedar); }
+
+    .footer-tagline {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-col-title {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cedar-light);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--cedar-light); }
+
+    .footer-contact-item {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .footer-contact-item a {
+      color: rgba(255,255,255,0.6);
+      transition: color var(--transition);
+    }
+    .footer-contact-item a:hover { color: var(--cedar-light); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-legal a {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      transition: color var(--transition);
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .section { padding: 72px 0; }
+
+      #dla-kogo .grid { grid-template-columns: 1fr; }
+      .filter-col { padding: 36px 24px; }
+
+      .steps-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      .steps-grid::before { display: none; }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .about-image-wrap::before { display: none; }
+      .about-image, .about-image-placeholder { aspect-ratio: 4/3; }
+
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .testimonial { padding: 32px 24px; }
+
+      .packages-grid { grid-template-columns: 1fr; gap: 2px; }
+      .package.featured { transform: none; }
+      .package.featured::before { display: none; }
+      .package { padding: 36px 28px; }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-h1 { font-size: 2.4rem; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
+
+      .steps-grid { grid-template-columns: 1fr; gap: 36px; }
+      .step { padding: 0; }
+
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVBAR ──────────────────────────────────────── -->
+  <nav id="navbar" role="navigation" aria-label="Nawigacja główna">
+    <a href="#home" class="nav-logo">Studio <span>Las</span></a>
+
+    <ul class="nav-links">
+      <li><a href="#jak-to-dziala">Jak to działa</a></li>
+      <li><a href="#o-damianie">O mnie</a></li>
+      <li><a href="#pakiety">Pakiety</a></li>
+      <li>
+        <a href="https://docs.google.com/forms/d/e/WSTAW_SWOJ_LINK_TUTAJ/viewform"
+           target="_blank" rel="noopener"
+           class="nav-cta">Wypełnij ankietę</a>
+      </li>
+    </ul>
+
+    <button class="nav-hamburger" aria-label="Menu" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="#jak-to-dziala">Jak to działa</a>
+    <a href="#o-damianie">O mnie</a>
+    <a href="#pakiety">Pakiety</a>
+    <a href="https://docs.google.com/forms/d/e/WSTAW_SWOJ_LINK_TUTAJ/viewform"
+       target="_blank" rel="noopener"
+       class="btn-primary">Wypełnij ankietę diagnostyczną</a>
+  </div>
+
+
+  <!-- ─── HERO ────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Studio Las · Prace Duże, gmina Tarczyn</p>
+        <h1 class="hero-h1">Wróć do ruchu<br>bez bólu.<br><em>Spokojnie.</em></h1>
+        <p class="hero-sub">
+          Kameralne studio treningu medycznego w lesie pod Warszawą.
+          Około 12 tygodni indywidualnej pracy 1:1 – wyjście z bólu,
+          powrót po kontuzji, odbudowa zaufania do własnego ciała.
+        </p>
+        <div class="hero-actions">
+          <a href="https://docs.google.com/forms/d/e/WSTAW_SWOJ_LINK_TUTAJ/viewform"
+             target="_blank" rel="noopener"
+             class="btn-primary">Wypełnij ankietę diagnostyczną</a>
+          <a href="#jak-to-dziala" class="btn-ghost">Zobacz, jak to działa ↓</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Przewiń</span>
+    </div>
+  </section>
+
+
+  <!-- ─── DLA KOGO ─────────────────────────────────────── -->
+  <section id="dla-kogo" class="section section-warm">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Zanim zaczniesz</span>
+        <h2 class="section-title">Studio Las – nie dla każdego.</h2>
+        <p class="section-lead">
+          Celowo pracuję z kilkoma osobami tygodniowo, nie kilkudziesięcioma.
+          Przeczytaj uważnie – chcę, żebyś już na tym etapie wiedział, czy to miejsce dla Ciebie.
+        </p>
+      </div>
+
+      <div class="grid reveal">
+        <div class="filter-col yes">
+          <div class="filter-col-title">
+            <div class="filter-icon">✓</div>
+            To jest dla Ciebie
+          </div>
+          <ul class="filter-list">
+            <li>Masz przewlekły ból pleców, kolan lub barków – szczególnie przy siedzeniu, prowadzeniu auta, wstawaniu</li>
+            <li>Wracasz po kontuzji lub operacji i chcesz to zrobić bezpiecznie, a nie z powrotem skończyć na stole operacyjnym</li>
+            <li>Masz 40+ lat, mało czasu i traktujesz zdrowie jak inwestycję – nie jak wydatek</li>
+            <li>Boisz się siłowni albo masz z nią złe doświadczenia – tłum, ocenianie, hałas, chaos</li>
+            <li>Chcesz nauczyć się bezpiecznego treningu, który utrzyma efekty – nie zniknąć po miesiącu</li>
+          </ul>
+        </div>
+        <div class="filter-col no">
+          <div class="filter-col-title">
+            <div class="filter-icon">✕</div>
+            To nie jest dla Ciebie
+          </div>
+          <ul class="filter-list">
+            <li>Szukasz „wycisku" jak na crossficie lub obózu przetrwania</li>
+            <li>Chcesz szybkiej metamorfozy na lato – „8 kg w 6 tygodni"</li>
+            <li>Zależy Ci przede wszystkim na jak najtańszym karnecie</li>
+            <li>Nie jesteś gotowy na minimum 12 tygodni regularnej pracy 1 raz w tygodniu</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── JAK TO DZIAŁA ─────────────────────────────────── -->
+  <section id="jak-to-dziala" class="section section-white">
+    <div class="container">
+      <div class="steps-header">
+        <div class="reveal">
+          <span class="section-label">System 4 kroków</span>
+          <h2 class="section-title">Jak wygląda<br>cały proces</h2>
+        </div>
+        <p class="section-lead reveal">
+          Nie ma tu przypadkowych ćwiczeń ani luźnych treningów.
+          Od pierwszego kontaktu do końca programu – wiesz dokładnie, co się wydarzy i dlaczego.
+        </p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step reveal">
+          <div class="step-number-wrap">
+            <div class="step-number">01</div>
+          </div>
+          <h3 class="step-title">Poznajemy Twój punkt startowy</h3>
+          <p class="step-body">
+            Ankieta online, analiza składu ciała Tanita RD-545 i proste testy ruchowe w studio.
+            Określamy realny punkt wyjścia i konkretny cel na pierwsze 12 tygodni.
+          </p>
+          <div class="step-effect">Wiesz, gdzie jesteś – i co naprawdę trzeba zmienić.</div>
+        </div>
+
+        <div class="step reveal" style="transition-delay:0.1s">
+          <div class="step-number-wrap">
+            <div class="step-number">02</div>
+          </div>
+          <h3 class="step-title">Przywracamy ruch i budujemy fundament</h3>
+          <p class="step-body">
+            Trening 1:1 dopasowany do Twojego ciała, historii zdrowia i poziomu lęku.
+            Bez presji, bez chaosu. 1 sesja w studio + 1 prosty trening samodzielny tygodniowo.
+          </p>
+          <div class="step-effect">Ciało zaczyna ruszać się pewniej i bez ciągłego strachu.</div>
+        </div>
+
+        <div class="step reveal" style="transition-delay:0.2s">
+          <div class="step-number-wrap">
+            <div class="step-number">03</div>
+          </div>
+          <h3 class="step-title">Układamy Twoje codzienne nawyki</h3>
+          <p class="step-body">
+            Proste zmiany w odżywianiu, śnie i regeneracji – dopasowane do Twojej pracy
+            i rodziny, nie do „idealnego planu z internetu".
+          </p>
+          <div class="step-effect">Efekty treningu przestają znikać po tygodniu.</div>
+        </div>
+
+        <div class="step reveal" style="transition-delay:0.3s">
+          <div class="step-number-wrap">
+            <div class="step-number">04</div>
+          </div>
+          <h3 class="step-title">Widzisz efekty i wiesz, co dalej</h3>
+          <p class="step-body">
+            Po 12 tygodniach dostajesz Kwartalny Raport Dobrostanu – konkretne dane
+            o Twoim ciele i jasny plan kolejnych kroków. Bez zgadywania.
+          </p>
+          <div class="step-effect">Masz dowód, że proces zadziałał – i decyzję, co dalej.</div>
+        </div>
+      </div>
+
+      <div class="steps-cta reveal">
+        <a href="https://docs.google.com/forms/d/e/WSTAW_SWOJ_LINK_TUTAJ/viewform"
+           target="_blank" rel="noopener"
+           class="btn-primary">Wypełnij ankietę diagnostyczną</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── O DAMIANIE ───────────────────────────────────── -->
+  <section id="o-damianie" class="section section-warm">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-image-wrap reveal">
+          <!-- ZAMIEŃ na: <img src="./images/damian.jpg" alt="Damian Krawiec – trener medyczny Studio Las" class="about-image"> -->
+          <div class="about-image-placeholder">
+            Zdjęcie Damiana<br>
+            <small style="opacity:0.5;font-size:0.7rem;margin-top:8px;display:block">
+              Podmiń na ./images/damian.jpg
+            </small>
+          </div>
+        </div>
+
+        <div class="reveal" style="transition-delay:0.15s">
+          <span class="section-label">Damian Krawiec</span>
+          <p class="about-tagline">
+            Pomagam dorosłym 40+ wyjść z bólu
+            i wrócić do normalnego życia –
+            bez chaosu siłowni i bez <em>wiecznej rehabilitacji bez efektów.</em>
+          </p>
+          <p class="about-body">
+            Nie jestem trenerem, który liczy serie i wychodzi. Przez ponad 15 lat
+            pracy z klientami indywidualnymi nauczyłem się, że trwała zmiana nie
+            dzieje się na sali – dzieje się w 166 godzinach tygodnia poza nią.
+            Dlatego pracuję nad całym procesem, nie tylko nad ćwiczeniami.
+          </p>
+          <ul class="about-credentials">
+            <li>Magister Wychowania Fizycznego, AWF Warszawa</li>
+            <li>Trener medyczny – Terapia Ruchem (studia podyplomowe)</li>
+            <li>Współpraca z Wojskowym Instytutem Medycyny Lotniczej (WIML)</li>
+            <li>Specjalizacja: przewlekłe bóle, powroty po kontuzjach i operacjach</li>
+            <li>15+ lat pracy 1:1 z klientami indywidualnymi</li>
+          </ul>
+          <a href="https://sites.google.com/view/trener-personalny-warszawa/referencje"
+             target="_blank" rel="noopener"
+             class="about-certs-link">Zobacz pełne kwalifikacje i certyfikaty →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── OPINIE ───────────────────────────────────────── -->
+  <section id="opinie" class="section section-dark">
+    <div class="container">
+      <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto;">
+        <span class="section-label">Historie klientów</span>
+        <h2 class="section-title">Co mówią osoby,<br>z którymi pracuję</h2>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <div class="testimonial reveal">
+          <p class="testimonial-quote">
+            <!-- ZAMIEŃ na prawdziwą opinię klienta -->
+            Przyszedłem z bólem lędźwi, który trwał trzy lata. Po 12 tygodniach pracy
+            w Studio Las ból przestał dominować mojego dnia. Wróciłem do jazdy na rowerze,
+            na którą od lat nie miałem odwagi.
+          </p>
+          <div class="testimonial-meta">
+            <div class="testimonial-name">Piotr K., 48 lat</div>
+            <!-- ZAMIEŃ na rzeczywisty kontekst -->
+            <div class="testimonial-context">Menedżer · Problem startowy: przewlekły ból lędźwi przy siedzeniu i prowadzeniu auta</div>
+          </div>
+        </div>
+
+        <div class="testimonial reveal" style="transition-delay:0.1s">
+          <p class="testimonial-quote">
+            <!-- ZAMIEŃ na prawdziwą opinię klienta -->
+            Po operacji kolana byłam przekonana, że już nie wrócę do normalnej aktywności.
+            Damian nie obiecywał cudów – robił konkretne kroki. Dzisiaj chodzę po górach.
+          </p>
+          <div class="testimonial-meta">
+            <div class="testimonial-name">Anna M., 52 lata</div>
+            <div class="testimonial-context">Właścicielka firmy · Problem startowy: powrót po artroskopii kolana</div>
+          </div>
+        </div>
+
+        <div class="testimonial reveal" style="transition-delay:0.2s">
+          <p class="testimonial-quote">
+            <!-- ZAMIEŃ na prawdziwą opinię klienta -->
+            Próbowałem siłowni, fizjoterapii, różnych trenerów. Dopiero tu ktoś
+            zajął się przyczyną, a nie objawem. Cisza, las i spokojne tempo pracy
+            zrobiły dla mnie więcej niż rok intensywnych treningów.
+          </p>
+          <div class="testimonial-meta">
+            <div class="testimonial-name">Tomasz R., 44 lata</div>
+            <div class="testimonial-context">Dyrektor sprzedaży · Problem startowy: ból barku i lęk przed ruchem po urazie</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── PAKIETY ──────────────────────────────────────── -->
+  <section id="pakiety" class="section section-warm">
+    <div class="container">
+      <div class="packages-header reveal">
+        <span class="section-label">Oferta</span>
+        <h2 class="section-title">Nie sprzedaję treningów.<br>Sprzedaję <em style="font-style:italic;color:var(--cedar)">proces.</em></h2>
+        <p class="section-lead">
+          Każda nowa osoba zaczyna od wizyty diagnostycznej.
+          To punkt, w którym sprawdzamy, czy jesteśmy dla siebie odpowiednim dopasowaniem.
+        </p>
+      </div>
+
+      <p class="packages-rule reveal">
+        Każda nowa osoba zaczyna od diagnostyki. Bez wyjątków.
+      </p>
+
+      <div class="packages-grid">
+
+        <div class="package reveal">
+          <div class="package-label">Krok 1</div>
+          <div class="package-name">Diagnostyka</div>
+          <div class="package-price">400 zł</div>
+          <div class="package-price-note">75–90 minut · odliczane od ceny FUNDAMENTU</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Szczegółowy wywiad medyczno-treningowy</li>
+            <li>Pomiar składu ciała Tanita RD-545</li>
+            <li>Proste testy funkcjonalne: wzorce ruchowe, mobilność, stabilizacja</li>
+            <li>Ocena neurotypu i poziomu lęku przed ruchem</li>
+            <li>Wstępny plan działania na 12 tygodni</li>
+          </ul>
+          <a href="https://docs.google.com/forms/d/e/WSTAW_SWOJ_LINK_TUTAJ/viewform"
+             target="_blank" rel="noopener"
+             class="package-cta">Zacznij od ankiety</a>
+        </div>
+
+        <div class="package featured reveal" style="transition-delay:0.1s">
+          <div class="package-label">Etap 1</div>
+          <div class="package-name">Fundament</div>
+          <div class="package-price">3 600 zł</div>
+          <div class="package-price-note">12 tygodni · 12 sesji 1:1 + plan domowy</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Wyjście z przewlekłego bólu lub jego znaczące zmniejszenie</li>
+            <li>12 sesji 1:1 w studio (ok. 75 min każda), 1×/tydzień</li>
+            <li>1 prosty trening samodzielny tygodniowo (2–4 ćwiczenia)</li>
+            <li>2 pomiary Tanita (start i koniec)</li>
+            <li>Kwartalny Raport Dobrostanu na zakończenie</li>
+            <li>Diagnostyka (400 zł) odliczana od ceny pakietu</li>
+          </ul>
+          <a href="https://docs.google.com/forms/d/e/WSTAW_SWOJ_LINK_TUTAJ/viewform"
+             target="_blank" rel="noopener"
+             class="package-cta">Zacznij od ankiety</a>
+        </div>
+
+        <div class="package reveal" style="transition-delay:0.2s">
+          <div class="package-label">Etap 2</div>
+          <div class="package-name">Rozwój</div>
+          <div class="package-price">3 000 zł</div>
+          <div class="package-price-note">12 tygodni · dostępny po FUNDAMENCIE</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Dostępny wyłącznie dla osób po Fundamencie</li>
+            <li>12 sesji 1:1, plan domowy dopasowany do aktualnego celu</li>
+            <li>Praca nad siłą, sprawnością i utrwaleniem nowych nawyków</li>
+            <li>Pomiar Tanita na zakończeniu + podsumowanie wyników</li>
+            <li>Cel: „wyżej niż zero bólu" – sport, góry, aktywne życie</li>
+          </ul>
+          <a href="https://docs.google.com/forms/d/e/WSTAW_SWOJ_LINK_TUTAJ/viewform"
+             target="_blank" rel="noopener"
+             class="package-cta">Zacznij od ankiety</a>
+        </div>
+
+      </div>
+
+      <p class="packages-note reveal">
+        Masz pytania przed decyzją? Wypełnij ankietę – oddzwonię i spokojnie wszystko omówimy.
+        Bez presji.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ─── FINAL CTA ────────────────────────────────────── -->
+  <section id="final-cta">
+    <div class="container reveal">
+      <p class="final-cta-eyebrow">Pierwszy krok</p>
+      <h2 class="final-cta-title">
+        Ankieta zajmuje 5 minut.<br>
+        Powrót do <em>normalnego życia</em><br>
+        – 12 tygodni.
+      </h2>
+      <p class="final-cta-sub">
+        Po wypełnieniu ankiety oddzwaniam w ciągu 24 godzin w dni robocze.
+        Krótka rozmowa – bez zobowiązań, bez presji decyzji na miejscu.
+      </p>
+      <a href="https://docs.google.com/forms/d/e/WSTAW_SWOJ_LINK_TUTAJ/viewform"
+         target="_blank" rel="noopener"
+         class="btn-primary">Wypełnij ankietę diagnostyczną →</a>
+    </div>
+  </section>
+
+
+  <!-- ─── FOOTER ───────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Studio <span>Las</span></div>
+          <p class="footer-tagline">
+            Nie dla każdego. Dla osób, które traktują zdrowie swoje
+            i swoich bliskich jako inwestycję, nie wydatek.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Nawigacja</div>
+          <ul class="footer-links">
+            <li><a href="#jak-to-dziala">Jak to działa</a></li>
+            <li><a href="#o-damianie">O mnie</a></li>
+            <li><a href="#pakiety">Pakiety i cennik</a></li>
+            <li><a href="https://sites.google.com/view/trener-personalny-warszawa/referencje" target="_blank" rel="noopener">Certyfikaty</a></li>
+            <li><a href="https://docs.google.com/forms/d/e/WSTAW_SWOJ_LINK_TUTAJ/viewform" target="_blank" rel="noopener">Ankieta diagnostyczna</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Kontakt</div>
+          <p class="footer-contact-item">
+            ul. Pracka 1J<br>
+            05-504 Prace Duże<br>
+            gmina Tarczyn
+          </p>
+          <p class="footer-contact-item">
+            <a href="tel:+48503975998">503 975 998</a>
+          </p>
+          <p class="footer-contact-item">
+            <a href="mailto:trenermedycznywarszawa@gmail.com">trenermedycznywarszawa@gmail.com</a>
+          </p>
+          <p class="footer-contact-item" style="margin-top:16px;font-size:0.78rem;opacity:0.7;">
+            Pon–Pt: 16:00–22:00<br>
+            Sob–Nd: po umówieniu
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Studio Las · Damian Krawiec. Wszelkie prawa zastrzeżone.</p>
+        <div class="footer-legal">
+          <a href="#">Polityka prywatności</a>
+          <a href="#">Regulamin</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ─── JAVASCRIPT ────────────────────────────────────── -->
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Hero ken-burns on load
+    const hero = document.getElementById('hero');
+    window.addEventListener('load', () => hero.classList.add('loaded'));
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('navMobile');
+    hamburger.addEventListener('click', () => {
+      navMobile.classList.toggle('open');
+    });
+    // Close on link click
+    navMobile.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navMobile.classList.remove('open'));
+    });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
