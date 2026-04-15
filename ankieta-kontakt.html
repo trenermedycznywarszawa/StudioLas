@@ -262,10 +262,8 @@ footer{background:var(--forest);padding:60px 0 36px}
         <div class="form-promise"><strong>Po wypełnieniu:</strong> oddzwaniam w ciągu 24 godzin w dni robocze. Krótka rozmowa – bez presji, bez sprzedaży.</div>
       </div>
 
-      <!-- NETLIFY FORM: ankieta-diagnostyczna -->
-      <form id="mainForm" name="ankieta-diagnostyczna" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate class="reveal" style="transition-delay:.1s">
-        <input type="hidden" name="form-name" value="ankieta-diagnostyczna" />
-        <p style="display:none"><label>Nie wypełniaj: <input name="bot-field" /></label></p>
+      <!-- FORMSPREE FORM: ankieta-diagnostyczna -->
+      <form id="mainForm" action="https://formspree.io/f/xgorealz" method="POST" novalidate class="reveal" style="transition-delay:.1s">
 
         <div class="form-row">
           <div class="form-group">
@@ -424,13 +422,6 @@ footer{background:var(--forest);padding:60px 0 36px}
       </div>
 
       <div class="map-wrap reveal" style="transition-delay:.2s">
-        <!--
-          PODMIEŃ ten div na iframe z Google Maps:
-          1. Wejdź na maps.google.com
-          2. Wyszukaj: ul. Pracka 1J Prace Duże
-          3. Kliknij Udostępnij → Osadź mapę → Skopiuj HTML
-          4. Wklej <iframe ...> tutaj zamiast poniższego div
-        -->
         <div class="map-placeholder">
           <div class="map-placeholder-icon">🗺️</div>
           <div class="map-placeholder-text">
@@ -479,10 +470,8 @@ footer{background:var(--forest);padding:60px 0 36px}
         <p class="simple-note">Pamiętaj jednak, że im więcej wiem o Twojej sytuacji przed rozmową, tym bardziej konkretna i pomocna będzie ta rozmowa. Dlatego dla osób z poważniejszymi problemami zdrowotnymi zawsze proszę o wypełnienie pełniejszej ankiety powyżej.</p>
       </div>
       <div class="reveal" style="transition-delay:.15s">
-        <!-- NETLIFY FORM: prosty-kontakt -->
-        <form id="simpleForm" name="prosty-kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-          <input type="hidden" name="form-name" value="prosty-kontakt" />
-          <p style="display:none"><label>Nie wypełniaj: <input name="bot-field" /></label></p>
+        <!-- FORMSPREE FORM: prosty-kontakt -->
+        <form id="simpleForm" action="https://formspree.io/f/xgorealz" method="POST" novalidate>
           <div class="sf-group">
             <label class="sf-label" for="sf-imie">Imię i telefon lub e-mail *</label>
             <input class="sf-input" type="text" id="sf-imie" name="imie_kontakt" placeholder="Jan, tel. 600 123 456" required />
@@ -560,7 +549,7 @@ document.querySelectorAll('.pain-btn').forEach(btn=>{
   });
 });
 
-// Main form – walidacja + wysyłka do Netlify
+// Main form – walidacja + wysyłka do Formspree
 document.getElementById('mainForm').addEventListener('submit',function(e){
   e.preventDefault();
   let ok=true;
@@ -582,7 +571,7 @@ document.getElementById('mainForm').addEventListener('submit',function(e){
   if(!ok){const first=this.querySelector('.err,.form-err-msg.show');if(first)first.scrollIntoView({behavior:'smooth',block:'center'});return;}
 
   const fd=new FormData(this);
-  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
+  fetch('https://formspree.io/f/xgorealz',{method:'POST',headers:{'Accept':'application/json'},body:fd})
     .then(r=>r.ok?showOk():alert('Błąd wysyłki – napisz bezpośrednio na e-mail.'))
     .catch(()=>alert('Błąd sieci – napisz bezpośrednio na e-mail.'));
 });
@@ -594,12 +583,12 @@ function showOk(){
   s.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-// Simple form – walidacja + wysyłka do Netlify
+// Simple form – walidacja + wysyłka do Formspree
 document.getElementById('simpleForm').addEventListener('submit',function(e){
   e.preventDefault();
   if(!document.getElementById('sf-imie').value.trim()||!document.getElementById('sf-msg').value.trim())return;
   const fd=new FormData(this);
-  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
+  fetch('https://formspree.io/f/xgorealz',{method:'POST',headers:{'Accept':'application/json'},body:fd})
     .then(r=>{
       if(r.ok){
         this.style.display='none';
