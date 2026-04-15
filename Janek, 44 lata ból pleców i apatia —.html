@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Janek, 44 lata: ból pleców i apatia — co ruch zmienił w ciągu 8 tygodni | Blog Studio Las</title>
+  <meta name="description" content="Historia Janka — od bólu L4-L5 i apatii po 8 tygodniach treningu medycznego. Jak ruch działa na depresję, co mówi Cochrane 2026 i dlaczego intensywność to nie terapia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+:root{
+  --forest:#1C2B24;--anthracite:#2D2D2D;--cedar:#B8935A;--cedar-light:#D4AC78;
+  --offwhite:#F7F4EF;--white:#FFFFFF;--grey-soft:#E8E4DC;--grey-text:#6B6560;
+  --font-display:'Cormorant Garant',Georgia,serif;--font-body:'DM Sans',system-ui,sans-serif;
+  --max-w:1120px;--content-w:720px;--t:.3s ease;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);font-weight:300;color:var(--anthracite);background:var(--offwhite);line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.container{width:100%;max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.content-wrap{width:100%;max-width:var(--content-w);margin:0 auto;padding:0 24px}
+
+
+/* NAV */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;background:var(--forest);box-shadow:0 2px 24px rgba(0,0,0,.15)}
+.nav-logo{font-family:var(--font-display);font-size:1.35rem;font-weight:500;letter-spacing:.08em;color:var(--white)}
+.nav-logo span{color:var(--cedar)}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{font-size:.8rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.8);transition:color var(--t)}
+.nav-links a:hover{color:var(--cedar-light)}
+.nav-cta{color:var(--white)!important;border:1px solid var(--cedar);padding:9px 20px;font-size:.75rem!important;transition:background var(--t)!important}
+.nav-cta:hover{background:var(--cedar)!important}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-hamburger span{display:block;width:24px;height:2px;background:var(--white)}
+.nav-mobile{display:none;position:fixed;top:68px;left:0;right:0;background:var(--forest);padding:24px;z-index:99;flex-direction:column;gap:20px}
+.nav-mobile.open{display:flex}
+.nav-mobile a{color:rgba(255,255,255,.85);font-size:1rem;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.nav-mobile .btn-primary{margin-top:8px;text-align:center}
+
+
+/* BUTTONS */
+.btn-primary{display:inline-block;background:var(--cedar);color:var(--white);font-family:var(--font-body);font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:16px 36px;border:none;cursor:pointer;transition:background var(--t),transform var(--t)}
+.btn-primary:hover{background:var(--cedar-light);transform:translateY(-1px)}
+
+
+/* POST HERO */
+#post-hero{background:var(--forest);padding:140px 0 64px;position:relative;overflow:hidden}
+.post-hero-bg{position:absolute;inset:0;background-image:url('./images/blog/post-hero.jpg');background-size:cover;background-position:center;opacity:.12}
+.post-hero-inner{position:relative;z-index:1}
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:32px;font-size:.75rem;color:rgba(255,255,255,.4);flex-wrap:wrap}
+.breadcrumb a{color:rgba(255,255,255,.4);transition:color var(--t)}
+.breadcrumb a:hover{color:var(--cedar-light)}
+.post-tags{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.post-tag{font-size:.62rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--cedar-light);background:rgba(184,147,90,.1);border:1px solid rgba(184,147,90,.25);padding:4px 12px}
+.post-h1{font-family:var(--font-display);font-size:clamp(2rem,4.5vw,3.2rem);font-weight:300;line-height:1.15;color:var(--white);margin-bottom:20px;max-width:760px}
+.post-h1 em{font-style:italic;color:var(--cedar-light)}
+.post-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.post-meta-item{font-size:.78rem;font-weight:300;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:6px}
+.post-meta-sep{color:rgba(255,255,255,.15)}
+
+
+/* READING PROGRESS */
+#reading-progress{position:fixed;top:68px;left:0;right:0;height:2px;background:rgba(184,147,90,.15);z-index:99}
+#reading-bar{height:100%;width:0%;background:var(--cedar);transition:width .1s}
+
+
+/* ARTICLE LAYOUT */
+.article-wrap{display:grid;grid-template-columns:1fr 260px;gap:64px;padding:64px 0 96px;align-items:start}
+.article-body{}
+
+
+/* ARTICLE TYPOGRAPHY */
+.article-body h2{font-family:var(--font-display);font-size:clamp(1.6rem,2.5vw,2.1rem);font-weight:400;color:var(--anthracite);line-height:1.25;margin:48px 0 16px}
+.article-body h3{font-family:var(--font-display);font-size:1.3rem;font-weight:500;color:var(--anthracite);line-height:1.3;margin:32px 0 12px}
+.article-body p{font-size:.97rem;font-weight:300;color:var(--anthracite);line-height:1.9;margin-bottom:20px}
+.article-body strong{font-weight:500;color:var(--anthracite)}
+.article-body em{font-style:italic}
+.article-body ul,.article-body ol{margin:8px 0 20px 20px}
+.article-body li{font-size:.95rem;font-weight:300;color:var(--anthracite);line-height:1.75;margin-bottom:6px;padding-left:4px}
+.article-body blockquote{border-left:3px solid var(--cedar);background:var(--offwhite);padding:20px 24px;margin:32px 0;font-family:var(--font-display);font-size:1.1rem;font-weight:300;font-style:italic;color:var(--anthracite);line-height:1.65}
+.article-body blockquote cite{display:block;margin-top:10px;font-size:.78rem;font-weight:400;font-style:normal;color:var(--grey-text);letter-spacing:.05em}
+
+/* BŁĄD 1 NAPRAWIONY: highlight-box — zielone tło i lewa krawędź w kolorze leśnej zieleni,
+   wyraźnie różna od beżowego blockquote */
+.article-body .highlight-box{
+  background:#eef4ef;
+  border:1px solid #c8dcc9;
+  border-left:3px solid #4a7c59;
+  padding:20px 24px;
+  margin:28px 0;
+  display:block; /* wymuszamy block, nie blockquote */
+}
+.article-body .highlight-box p{margin-bottom:0;font-size:.9rem;font-style:normal;font-family:var(--font-body)}
+
+.article-body .result-box{background:var(--forest);color:var(--white);padding:24px 28px;margin:32px 0}
+.article-body .result-box .result-label{font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--cedar-light);margin-bottom:10px;display:block}
+.article-body .result-box p{color:rgba(255,255,255,.85);margin-bottom:0}
+.article-body .results-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 32px}
+.article-body .result-item{background:var(--offwhite);padding:16px 20px;border-left:2px solid var(--cedar)}
+.article-body .result-item .r-label{font-size:.65rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-text);margin-bottom:4px;display:block}
+.article-body .result-item .r-val{font-family:var(--font-display);font-size:1.2rem;font-weight:400;color:var(--anthracite)}
+.article-body .phase-header{display:flex;align-items:center;gap:16px;background:var(--forest);padding:16px 20px;margin:36px 0 16px}
+.article-body .phase-num{font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--cedar-light);min-width:32px}
+.article-body .phase-title{font-family:var(--font-display);font-size:1.1rem;font-weight:400;color:var(--white);line-height:1.3}
+.article-body hr{border:none;border-top:1px solid var(--grey-soft);margin:40px 0}
+.article-body .sources{border-top:1px solid var(--grey-soft);padding-top:32px;margin-top:48px}
+.article-body .sources h4{font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-text);margin-bottom:16px}
+.article-body .sources ol{margin-left:20px}
+.article-body .sources li{font-size:.78rem;color:var(--grey-text);line-height:1.65;margin-bottom:6px}
+
+
+/* SIDEBAR */
+.article-sidebar{position:sticky;top:100px}
+.sidebar-cta{background:var(--forest);padding:32px 28px;margin-bottom:2px}
+.sidebar-cta-label{font-size:.62rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--cedar-light);margin-bottom:12px;display:block}
+.sidebar-cta-title{font-family:var(--font-display);font-size:1.2rem;font-weight:400;color:var(--white);line-height:1.3;margin-bottom:14px}
+.sidebar-cta-body{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:24px}
+.sidebar-btn{display:block;text-align:center;background:var(--cedar);color:var(--white);font-family:var(--font-body);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:14px 20px;transition:background var(--t)}
+.sidebar-btn:hover{background:var(--cedar-light)}
+.sidebar-toc{background:var(--white);border:1px solid var(--grey-soft);padding:24px 24px;margin-top:2px}
+.toc-label{font-size:.62rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--grey-text);margin-bottom:16px;display:block}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.toc-list li a{font-size:.82rem;font-weight:300;color:var(--grey-text);line-height:1.5;transition:color var(--t);display:block;padding-left:12px;border-left:1px solid var(--grey-soft)}
+.toc-list li a:hover{color:var(--cedar);border-left-color:var(--cedar)}
+
+
+/* POST CTA BLOCK */
+.post-cta-block{background:var(--anthracite);padding:40px 36px;margin:48px 0;text-align:center}
+.pcta-label{font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--cedar-light);margin-bottom:12px;display:block}
+.pcta-title{font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--white);line-height:1.3;margin-bottom:12px}
+.pcta-body{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:24px}
+
+
+/* RELATED POSTS */
+#related{background:var(--offwhite);padding:64px 0 80px;border-top:1px solid var(--grey-soft)}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:40px}
+.related-card{background:var(--white);padding:28px 24px;display:flex;flex-direction:column;transition:transform var(--t)}
+.related-card:hover{transform:translateY(-3px)}
+.related-tag{font-size:.62rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--cedar);margin-bottom:10px;display:block}
+.related-title{font-family:var(--font-display);font-size:1.1rem;font-weight:400;color:var(--anthracite);line-height:1.3;margin-bottom:10px;flex:1;transition:color var(--t)}
+.related-card:hover .related-title{color:var(--cedar)}
+.related-meta{font-size:.72rem;color:var(--grey-text);margin-top:auto;padding-top:14px;border-top:1px solid var(--grey-soft)}
+.section-label{font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--grey-text);display:block;margin-bottom:8px}
+
+
+/* FOOTER */
+footer{background:var(--forest);padding:60px 0 36px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-logo{font-family:var(--font-display);font-size:1.3rem;font-weight:500;color:var(--white);letter-spacing:.08em;margin-bottom:16px}
+.footer-logo span{color:var(--cedar)}
+.footer-tagline{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.7;max-width:280px}
+.footer-col-title{font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--cedar-light);margin-bottom:20px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.6);transition:color var(--t)}
+.footer-links a:hover{color:var(--cedar-light)}
+.footer-ci{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.6);margin-bottom:10px;line-height:1.6}
+.footer-ci a{color:rgba(255,255,255,.6);transition:color var(--t)}
+.footer-ci a:hover{color:var(--cedar-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-copy{font-size:.75rem;color:rgba(255,255,255,.3)}
+.footer-legal{display:flex;gap:20px}
+.footer-legal a{font-size:.75rem;color:rgba(255,255,255,.3);transition:color var(--t)}
+.footer-legal a:hover{color:rgba(255,255,255,.6)}
+
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .nav-links{display:none}.nav-hamburger{display:flex}
+  .article-wrap{grid-template-columns:1fr}
+  .article-sidebar{display:none}
+  .related-grid{grid-template-columns:1fr 1fr}
+  .article-body .results-list{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:600px){
+  .related-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+}
+  </style>
+</head>
+<body>
+
+
+
+<nav id="navbar">
+  <a href="./index.html" class="nav-logo">Studio <span>Las</span></a>
+  <ul class="nav-links">
+    <li><a href="./index.html#jak-to-dziala">Jak to działa</a></li>
+    <li><a href="./metoda-i-pakiety.html">Metoda i pakiety</a></li>
+    <li><a href="./dla-kogo.html">Dla kogo</a></li>
+    <li><a href="./blog.html" class="active">Blog</a></li>
+    <li><a href="./ankieta-kontakt.html" class="nav-cta">Wypełnij ankietę</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="./index.html">Strona główna</a>
+  <a href="./metoda-i-pakiety.html">Metoda i pakiety</a>
+  <a href="./dla-kogo.html">Dla kogo</a>
+  <a href="./blog.html">Blog</a>
+  <a href="./ankieta-kontakt.html" class="btn-primary">Wypełnij ankietę</a>
+</div>
+
+
+
+<!-- READING PROGRESS -->
+<div id="reading-progress"><div id="reading-bar"></div></div>
+
+
+
+<!-- POST HERO -->
+<section id="post-hero">
+  <div class="post-hero-bg"></div>
+  <div class="container post-hero-inner">
+    <nav class="breadcrumb">
+      <a href="./index.html">Strona główna</a>
+      <span>›</span>
+      <a href="./blog.html">Blog</a>
+      <span>›</span>
+      <span>Janek, 44 lata: ból pleców i apatia</span>
+    </nav>
+    <div class="post-tags">
+      <span class="post-tag">Case study</span>
+      <span class="post-tag">Trening medyczny</span>
+      <span class="post-tag">Zdrowie psychiczne</span>
+    </div>
+    <h1 class="post-h1">Janek, 44 lata: ból pleców i apatia —<br>co ruch zmienił w ciągu <em>8 tygodni</em></h1>
+    <div class="post-meta">
+      <span class="post-meta-item">Damian Krawiec</span>
+      <span class="post-meta-sep">·</span>
+      <span class="post-meta-item">14 Kwietnia 2026</span>
+      <span class="post-meta-sep">·</span>
+      <span class="post-meta-item">14 min czytania</span>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ARTICLE -->
+<div class="container">
+  <div class="article-wrap">
+
+
+
+    <!-- MAIN CONTENT -->
+    <article class="article-body">
+
+
+      <p>Janek zjawił się u mnie z bólem odcinka lędźwiowego. Tak przynajmniej powiedział w ankiecie. Kiedy jednak zaczęliśmy rozmawiać na pierwszym spotkaniu — siedząc w studio, przy otwartym oknie, z lasem za szybą — wyszło szybko, że ból to tylko jeden z problemów. Że wstaje rano z łóżka, jakby wcale nie spał. Że wieczory spędza przed ekranem i nic z nich nie pamięta. Że od roku nie zrobił niczego tylko dla siebie. <strong>„Nie mam na nic siły"</strong> — powiedział i szybko dodał: „ale to pewnie ze stresu w pracy".</p>
+
+
+      <p>Osiem tygodni później ból pleców zszedł z 7/10 do 1–2/10. Janek wrócił na rower, który stał nieużywany od dwóch lat. Ale to nie był najważniejszy wynik tej współpracy.</p>
+
+
+      <h2 id="depresja">Depresja nie puka do drzwi</h2>
+
+
+      <p>Kiedy myślimy o depresji, zazwyczaj wyobrażamy sobie kogoś, kto nie wstaje z łóżka. Tymczasem kliniczne obrazy bywają zupełnie inne — i dlatego tak wielu mężczyzn po czterdziestce jej nie rozpoznaje u siebie. Janek nie płakał. Nie miał myśli samobójczych. Funkcjonował — zawodowo, rodzinnie, towarzysko. Ale robił to na autopilocie, z rosnącym poczuciem, że wszystko kosztuje go więcej niż powinno.</p>
+
+
+      <p>To, co opisywał, ma swoją nazwę w literaturze klinicznej: <strong>anhedonia i obniżona reaktywność emocjonalna</strong>. Nie „złe nastawienie". Nie „brak motywacji". Zaburzenie, które — według prognoz Światowej Organizacji Zdrowia — dotyczy już dziś 280 milionów ludzi na świecie, i które do 2030 roku ma stać się najczęściej diagnozowaną chorobą na całym globie. W Polsce sprzedaż leków przeciwdepresyjnych wzrosła w ciągu ostatnich dziesięciu lat o 59 procent. Pandemia przyspieszyła ten trend o kolejne 25 procent w skali globalnej.</p>
+
+
+      <p>Mówię o tym nie po to, żeby straszyć. Mówię, bo w gabinecie trenera medycznego ten temat pojawia się regularnie — i zazwyczaj nie z inicjatywy klienta.</p>
+
+
+      <h2 id="ruch-i-depresja">Pytanie, którego nikt nie zadaje</h2>
+
+
+      <p>Co trener medyczny ma do zrobienia z depresją? To jest uzasadnione pytanie. Nie jestem psychiatrą ani psychoterapeutą. Nie stawiam diagnozy i nie przepisuję leków. Jeśli klient wymaga specjalistycznej interwencji — mówię o tym wprost, już na pierwszym spotkaniu, i pomagam pokierować do odpowiedniej osoby.</p>
+
+
+      <p>Ale tu jest coś, o czym warto mówić głośno: ruch jest jedną z najlepiej przebadanych i najmniej wykorzystywanych interwencji w obrębie łagodnej i umiarkowanej depresji. Najnowszy przegląd Cochrane z 2026 roku, obejmujący 73 badania i blisko 5 000 pacjentów, potwierdza wprost: <strong>ćwiczenia fizyczne są umiarkowanie skuteczne w leczeniu depresji — na poziomie porównywalnym z psychoterapią, a potencjalnie zbliżonym do farmakoterapii.</strong> Analiza opublikowana w <em>British Journal of Sports Medicine</em> pokazuje, że w porównaniu ze standardową terapią aktywność fizyczna miała istotny statystycznie wpływ na łagodzenie objawów depresji, szczególnie wyraźny u osób dorosłych z przewlekłymi schorzeniami towarzyszącymi.</p>
+
+      <!-- BŁĄD 1 NAPRAWIONY: div.highlight-box zamiast blockquote, brak <hr> wewnątrz -->
+      <div class="highlight-box">
+        <p>Mechanizm nie jest tajemnicą od dawna. Wysiłek fizyczny stymuluje wydzielanie BDNF — neurotroficznego czynnika mózgowego, który wspiera neuroplastyczność i dosłownie odbudowuje połączenia synaptyczne w hipokampie, strukturze kluczowej dla regulacji nastroju. Równocześnie wzrasta poziom serotoniny i dopaminy, reguluje się oś HPA (podwzgórze–przysadka–nadnercza), spada stężenie kortyzolu. To neurochemia — nie filozofia.</p>
+      </div>
+
+
+      <p><strong>Ważne zastrzeżenie:</strong> badania wskazują, że ćwiczenia o lekkiej lub umiarkowanej intensywności przynoszą lepsze efekty niż trening intensywny. I że kluczowe jest znalezienie ruchu, który dana osoba jest w stanie wykonywać regularnie. Nie ten z filmiku. Nie ten z programu dla „ogólnie chętnych". Ten, który pasuje do jej neurotypu, poziomu lęku i aktualnych możliwości. To jest dokładnie to, czym się zajmuję.</p>
+
+
+      <h2 id="diagnostyka">Faza diagnostyczna — co naprawdę stało za bólem Janka</h2>
+
+      <!-- BŁĄD 4 NAPRAWIONY: dodano id="phase-1" -->
+      <div id="phase-1" class="phase-header">
+        <span class="phase-num">01</span>
+        <span class="phase-title">Diagnostyka (tygodnie 1–2)</span>
+      </div>
+
+
+      <p>Janek, 44 lata. Kierownik projektów w firmie IT, praca hybrydowa, 7–9 godzin przy biurku dziennie. Żonaty, dwójka dzieci. W wywiadzie: ból dolnych pleców od około 3 lat, nasilony przez ostatnie pół roku. Jedna wizyta u ortopedy: <strong>„zmiany zwyrodnieniowe L4-L5, proszę się ruszać"</strong>. Żadnego konkretnego planu. Żadnej fizjoterapii. Kilka podejść do siłowni — każde kończące się po 3 tygodniach.</p>
+
+
+      <h3>Analiza składu ciała (Tanita RD-545)</h3>
+
+
+      <div class="results-list">
+        <div class="result-item"><span class="r-label">Masa ciała</span><span class="r-val">97 kg</span></div>
+        <div class="result-item"><span class="r-label">Tkanka tłuszczowa</span><span class="r-val">31% (norma 18–25%)</span></div>
+        <div class="result-item"><span class="r-label">Masa mięśniowa</span><span class="r-val">Poniżej średniej</span></div>
+        <div class="result-item"><span class="r-label">Nawodnienie</span><span class="r-val">Nieoptymalne</span></div>
+      </div>
+
+
+      <h3>Analiza funkcjonalna ruchu</h3>
+
+
+      <p>Analiza funkcjonalna ruchu pokazała to, czego spodziewałem się po wywiadzie: głęboki przykurcz biodrowo-lędźwiowy po stronie prawej, wyraźna <em>glute amnesia</em> (pośladki niemal nieaktywne przy podstawowych wzorcach ruchowych), brak stabilizacji core pod jakimkolwiek obciążeniem. Przysiad — kolana do środka, pięty oderwane. Zawias biodrowy — ruch w odcinku lędźwiowym zamiast w biodrze.</p>
+
+
+      <h3>Kwestionariusz PHQ-9</h3>
+
+
+      <p>Zrobiłem jeszcze jedną rzecz, której nie robię zawsze, ale w tym przypadku było to konieczne: poprosiłem Janka, żeby wypełnił krótki kwestionariusz PHQ-9 — dziewięciopunktową skalę przesiewową w kierunku depresji, stosowaną w podstawowej opiece zdrowotnej. Wynik: <strong>11/27. Zakres umiarkowanej depresji.</strong></p>
+
+
+      <blockquote>
+        „Janek, to, co opisujesz i co pokazuje ten kwestionariusz, nie jest tylko zmęczeniem z pracy. Warto, żebyś porozmawiał z psychiatrą lub psychoterapeutą. Będziemy pracować równolegle — ale chcę, żebyś miał pełną opiekę."
+        <cite>Damian Krawiec, pierwsze spotkanie z Jankiem</cite>
+      </blockquote>
+
+
+      <p>Umówił się do psychiatry. Psychiatra nie przepisał leków — stwierdził, że stan nie wymaga na tym etapie farmakoterapii, a aktywna praca z ruchem i psychoterapią będzie właściwym krokiem. Zaczęliśmy.</p>
+
+      <!-- BŁĄD 4 NAPRAWIONY: dodano id="phase-2" -->
+      <div id="phase-2" class="phase-header">
+        <span class="phase-num">02</span>
+        <span class="phase-title">Bezpieczeństwo i sygnał — tygodnie 1–4</span>
+      </div>
+
+
+      <p>Pierwsze cztery tygodnie wyglądały niepozornie. Dwie sesje tygodniowo, 60 minut. Żadnych intensywnych ćwiczeń, żadnych rekordów.</p>
+
+
+      <p>Zacząłem od <strong>oddechu przeponowego</strong> — bo wzorzec oddechowy Janka był typowy dla kogoś, kto od miesięcy funkcjonuje w trybie przewlekłego stresu: płytki, górny, klatka piersiowa zamiast brzucha. Przepona, wraz z dnem miednicy i mięśniami wielodzielnymi, tworzy „cylinder stabilizacji", który chroni L4-L5 pod obciążeniem. Naprawiliśmy oddech, zanim dotknęliśmy jakiegokolwiek ciężaru.</p>
+
+
+      <p>Pierwsze ćwiczenia: mostek biodrowy (aktywacja pośladków — priorytet numer jeden), martwy ciąg z kettlebelem 10 kg z naciskiem na wzorzec zawiasu biodrowego, przysiady z asystą TRX. Do tego <strong>10 minut spaceru po lesie przed każdą sesją</strong> — nie jako rozgrzewka, ale jako sygnał dla układu nerwowego, że to jest czas dla siebie.</p>
+
+      <!-- BŁĄD 1 NAPRAWIONY: div.highlight-box bez <hr> wewnątrz -->
+      <div class="highlight-box">
+        <p>Badania nad <em>forest therapy</em> pokazują, że środowisko leśne obniża kortyzol i tętno już po 15–20 minutach. Dla kogoś, kto przychodzi naładowany kortyzolem z otwartego biura i skrzynki mailowej — te 10 minut w ciszy między drzewami zmienia stan wyjściowy całej sesji.</p>
+      </div>
+
+
+      <div class="result-box">
+        <span class="result-label">Po 4 tygodniach</span>
+        <p>Ból pleców: 7/10 → 4/10. Janek zaczął sypiać dłużej. Na trzecim tygodniu powiedział: „Chyba pierwszy raz od dawna czekam na coś w tygodniu" — mówił o treningu.</p>
+      </div>
+
+      <!-- BŁĄD 4 NAPRAWIONY: dodano id="phase-3" -->
+      <div id="phase-3" class="phase-header">
+        <span class="phase-num">03</span>
+        <span class="phase-title">Siła i wzorzec — tygodnie 5–7</span>
+      </div>
+
+
+      <p>W piątym tygodniu ból był na poziomie 3/10 i tylko przy siedzeniu powyżej 2 godzin bez przerwy. Zwiększyliśmy częstotliwość do 3 sesji tygodniowo. Wprowadziliśmy sztangę olimpijską w power racku: przysiad ze sztangą (od 20 kg, nacisk na technikę), martwy ciąg rumuński (RDL) z hantlami, wiosłowanie podchwytowe. Do tego <strong>rower Schwinn IC8 — 15–20 minut w strefie 2 tętna (60–70% HR max)</strong> po każdej sesji siłowej. Nie dla spalania kalorii. Dla neurochemii.</p>
+
+      <!-- BŁĄD 1 + 3 NAPRAWIONY: div.highlight-box bez <hr>; BŁĄD 2 NAPRAWIONY: przywrócono „Nie" -->
+      <div class="highlight-box">
+        <p><strong>Dlaczego strefa 2?</strong> Intensywność umiarkowana jest tą, przy której badania notują najsilniejszy efekt antydepresyjny. Przegląd Cochrane potwierdza: najbardziej zauważalna poprawa objawów depresji miała miejsce po 13–36 sesjach ćwiczeń. Byliśmy w tym przedziale.</p>
+      </div>
+
+
+      <p>Janek zapytał mnie w szóstym tygodniu, czy nie powinien ćwiczyć intensywniej. Powiedziałem mu to, co mówię wszystkim: <strong>„Intensywność jest łatwa do zmierzenia. Skuteczność — nie. Na tym etapie skuteczność to konsekwencja i brak bólu po treningu. Nie pot i zakwasy."</strong></p>
+
+
+      <p>Janek wykazywał cechy neurotypu 3 według Thibaudeau — spokojny, analityczny, nagradzający się kontrolą i precyzją, nie rywalizacją. Zbyt duże obciążenie osi HPA u osoby z obniżonym nastrojem nie podnosi energii — obniża ją jeszcze bardziej. Presja i intensywność paraliżują zamiast mobilizować.</p>
+
+
+      <div class="result-box">
+        <span class="result-label">Po 7 tygodniach</span>
+        <p>Ból pleców: 4/10 → 2/10. Masa ciała: −3 kg (z 97 do 94 kg). Janek wyjął rower z garażu i pojechał 12 km — pierwszy raz od dwóch lat.</p>
+      </div>
+
+      <!-- BŁĄD 4 NAPRAWIONY: dodano id="phase-4" -->
+      <div id="phase-4" class="phase-header">
+        <span class="phase-num">04</span>
+        <span class="phase-title">Utrwalenie i autonomia — tydzień 8</span>
+      </div>
+
+
+      <p>Ósmy tydzień był rozmową o tym, co dalej. Nie o zakończeniu — o tym, jak to wygląda bez mojego nadzoru co drugi dzień. Janek dostał plan na 3 tygodnie do samodzielnej realizacji: dwa treningi siłowe według schematu, który znał już na pamięć, plus minimum dwie jazdy rowerowe w tygodniu.</p>
+
+
+      <p>Do tego jedno proste ćwiczenie, które polecam każdemu klientowi z tendencją do zalewania się pracą: <strong>„po zamknięciu laptopa — przed otwarciem jakiegokolwiek ekranu — 10 minut ruchu. Cokolwiek. Spacer, przysiad, rower. Zanim telefon, zanim telewizor."</strong></p>
+
+
+      <p>To nie jest faza zakończenia. To jest faza, w której sprawdzamy, czy ruch stał się częścią tożsamości, a nie tylko kolejnym obowiązkiem.</p>
+
+
+      <div class="result-box">
+        <span class="result-label">Po 8 tygodniach — wyniki mierzalne</span>
+        <p>Ból pleców: 7/10 → 1–2/10 (tylko przy bardzo długim bezruchu) · Masa ciała: 97 kg → 93 kg (−4 kg) · Tkanka tłuszczowa: 31% → 28% · PHQ-9: 11/27 → 5/27 (z zakresu umiarkowanej depresji do minimalnej) · Pierwsza jazda rowerowa po 2 latach: ✓ · Regularne treningi bez opuszczenia sesji: ✓</p>
+      </div>
+
+
+      <p>Wynik PHQ-9 po 8 tygodniach to nie moja zasługa wyłącznie — Janek równolegle uczestniczył w psychoterapii. Ale wiem, że ruch zrobił tu konkretną robotę. I wiem, że bez naprawy bólu pleców psychoterapia byłaby utrudniona — bo ciało w przewlekłym bólu jest ciałem w przewlekłym stresie. Nie da się naprawić głowy, ignorując kręgosłup.</p>
+
+
+      <h2 id="zasady">Trzy rzeczy do zabrania ze sobą</h2>
+
+
+      <p><strong>Zasada 1: Ból ciała i ból głowy często mają tego samego sprawcę.</strong> Przewlekły ból odcinka lędźwiowego i przewlekły stres napędzają tę samą oś kortyzolową. Jedno wzmacnia drugie. Praca wyłącznie z psychiką, ignorująca ciało, jest równie niepełna jak praca wyłącznie z ciałem przy ignorowaniu stanu psychicznego. Dla wielu moich klientów po czterdziestce fizyczny powrót do sprawności jest pierwszym konkretnym powodem, żeby zacząć wierzyć, że cokolwiek może się zmienić.</p>
+
+
+      <p><strong>Zasada 2: Intensywność nie jest terapią — regularność jest.</strong> W kontekście depresji i apatii umiarkowany ruch wykonywany konsekwentnie przez 6–8 tygodni przynosi udowodnione, mierzalne efekty neurochemiczne. Wyczerpujący trening wykonany raz na dwa tygodnie — nie. To różnica, którą łatwo zignorować, a która decyduje o wszystkim.</p>
+
+
+      <p><strong>Zasada 3: Ruch to narzędzie, nie nagroda.</strong> Jeden z wzorców, który widzę regularnie u mężczyzn z apatią: „jak się pozbędę zmęczenia, to zacznę ćwiczyć". To jest odwrócona logika. Ruch zmniejsza zmęczenie — ale tylko jeśli zaczyna się przed jego ustąpieniem, a nie po. Janek zaczął trenować wyczerpany. I właśnie dlatego przestał być wyczerpany.</p>
+
+
+      <!-- INLINE CTA -->
+      <div class="post-cta-block">
+        <span class="pcta-label">To może być Twoja historia</span>
+        <h3 class="pcta-title">Rozpoznajesz coś z historii Janka?</h3>
+        <p class="pcta-body">Ból, apatia, poczucie że „to pewnie ze stresu". Wypełnij krótką ankietę diagnostyczną — oddzwonię i powiemy sobie wprost: czy i jak możemy zacząć.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScMH0fF5ZID6zY5PeC5Wp7xXjTf1VHND4Pert7cbUI7pRWEIQ/viewform?usp=header" class="btn-primary" target="_blank" rel="noopener">Wypełnij ankietę diagnostyczną →</a>
+      </div>
+
+
+      <h2 id="2030">Na koniec — jedno zdanie o 2030 roku</h2>
+
+
+      <p>WHO prognozuje, że za kilka lat depresja będzie najczęstszą chorobą na świecie. Nie wiem, ile z tych 280 milionów ludzi słyszy od lekarzy: „proszę się ruszać". Wiem, że większość z nich nie dostaje przy tym żadnego planu — jak to zrobić bezpiecznie, dopasowanego do własnego ciała i stanu psychicznego. To jest dokładnie luka, którą próbuję wypełniać w Studio Las.</p>
+
+
+      <div class="sources">
+        <h4>Źródła i literatura</h4>
+        <ol>
+          <li>World Health Organization. <em>Depression and Other Common Mental Disorders: Global Health Estimates.</em> Geneva: WHO, 2017.</li>
+          <li>Recchia, F. et al. „Exercise as a treatment for depression: a meta-analysis adjusting for publication bias." <em>British Journal of Sports Medicine,</em> 2022.</li>
+          <li>Cochrane Database of Systematic Reviews. „Exercise for depression." Review: 73 trials, ~4,945 participants. January 2026.</li>
+          <li>Szuhany, K.L., Bugatti, M., Otto, M.W. „A meta-analytic review of the effects of exercise on brain-derived neurotrophic factor." <em>Journal of Psychiatric Research,</em> 60, 2015.</li>
+          <li>Hossain, M.M. et al. „Prevalence of mental disorders in South Asia: An umbrella review." <em>Asian Journal of Psychiatry,</em> 2020.</li>
+          <li>Li, Q. <em>Forest Bathing: How Trees Can Help You Find Health and Happiness.</em> Viking, 2018.</li>
+        </ol>
+      </div>
+
+
+    </article><!-- /article-body -->
+
+
+
+    <!-- SIDEBAR -->
+    <aside class="article-sidebar">
+      <div class="sidebar-cta">
+        <span class="sidebar-cta-label">Masz podobny problem?</span>
+        <h3 class="sidebar-cta-title">Wypełnij ankietę diagnostyczną</h3>
+        <p class="sidebar-cta-body">Oddzwonię w ciągu 24 godzin. Krótka rozmowa — sprawdzamy razem, czy mogę Ci pomóc.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScMH0fF5ZID6zY5PeC5Wp7xXjTf1VHND4Pert7cbUI7pRWEIQ/viewform?usp=header" class="sidebar-btn" target="_blank" rel="noopener">Wypełnij ankietę →</a>
+      </div>
+      <!-- BŁĄD 4 NAPRAWIONY: poprawione anchory w TOC -->
+      <nav class="sidebar-toc">
+        <span class="toc-label">Spis treści</span>
+        <ul class="toc-list">
+          <li><a href="#depresja">Depresja nie puka do drzwi</a></li>
+          <li><a href="#ruch-i-depresja">Ruch a depresja — co mówi nauka</a></li>
+          <li><a href="#diagnostyka">Faza 1: Diagnostyka</a></li>
+          <li><a href="#phase-2">Faza 2: Bezpieczeństwo i sygnał</a></li>
+          <li><a href="#phase-3">Faza 3: Siła i wzorzec</a></li>
+          <li><a href="#phase-4">Faza 4: Autonomia</a></li>
+          <li><a href="#zasady">Trzy zasady</a></li>
+          <li><a href="#2030">Konkluzja — 2030</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+
+
+  </div><!-- /article-wrap -->
+</div><!-- /container -->
+
+
+
+
+<!-- RELATED POSTS -->
+<section id="related">
+  <div class="container">
+    <span class="section-label">Czytaj dalej</span>
+    <div class="related-grid">
+      <a href="./post-tomasz-powrot-do-biegania.html" class="related-card">
+        <span class="related-tag">Case study</span>
+        <h4 class="related-title">Od bólu do ruchu: Jak Tomasz (42 lata) wrócił do biegania po 3 latach przerwy</h4>
+        <span class="related-meta">15 Listopada 2025 · 12 min</span>
+      </a>
+      <a href="./post-trening-pod-neurotyp.html" class="related-card">
+        <span class="related-tag">Neurotypy</span>
+        <h4 class="related-title">Trening dopasowany do neurotypu: Dlaczego nienawidzisz siłowni (i jak to naprawić)</h4>
+        <span class="related-meta">1 Listopada 2025 · 14 min</span>
+      </a>
+      <a href="./post-dlaczego-nie-ma-20-maszyn.html" class="related-card">
+        <span class="related-tag">Filozofia</span>
+        <h4 class="related-title">Dlaczego w Studio Las nie ma 20 maszyn treningowych (i czemu to przewaga, nie brak)</h4>
+        <span class="related-meta">8 Listopada 2025 · 10 min</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Studio <span>Las</span></div>
+        <p class="footer-tagline">Nie dla każdego. Dla osób, które traktują zdrowie jako inwestycję, nie wydatek.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Nawigacja</div>
+        <ul class="footer-links">
+          <li><a href="./index.html">Strona główna</a></li>
+          <li><a href="./metoda-i-pakiety.html">Metoda i pakiety</a></li>
+          <li><a href="./dla-kogo.html">Dla kogo</a></li>
+          <li><a href="./blog.html">Blog</a></li>
+          <li><a href="./ankieta-kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Kontakt</div>
+        <p class="footer-ci">ul. Pracka 1J, 05-504 Prace Duże</p>
+        <p class="footer-ci"><a href="tel:+48503975998">503 975 998</a></p>
+        <p class="footer-ci"><a href="mailto:trenermedycznywarszawa@gmail.com">trenermedycznywarszawa@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Studio Las · Damian Krawiec. Wszelkie prawa zastrzeżone.</p>
+      <div class="footer-legal"><a href="#">Polityka prywatności</a><a href="#">Regulamin</a></div>
+    </div>
+  </div>
+</footer>
+
+
+
+<script>
+// Hamburger
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navMobile').classList.toggle('open'));
+document.querySelectorAll('#navMobile a').forEach(l=>l.addEventListener('click',()=>document.getElementById('navMobile').classList.remove('open')));
+
+
+// Reading progress
+const bar=document.getElementById('reading-bar');
+window.addEventListener('scroll',()=>{
+  const doc=document.documentElement;
+  const scrolled=doc.scrollTop/(doc.scrollHeight-doc.clientHeight)*100;
+  bar.style.width=Math.min(100,scrolled)+'%';
+},{passive:true});
+</script>
+</body>
+</html>
